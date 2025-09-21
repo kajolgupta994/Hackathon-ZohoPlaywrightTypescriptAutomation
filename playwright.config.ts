@@ -1,8 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
-import { config } from 'dotenv';
+import * as path from 'path';
+import * as dotenv from 'dotenv';
 
-// Load environment variables
-config();
+// Load environment variables from config folder
+dotenv.config({ path: path.join(process.cwd(), 'config', '.env') });
 
 /**
  * AI-Driven Playwright Configuration
@@ -37,12 +38,6 @@ export default defineConfig({
     // AI-enhanced timeout strategies
     actionTimeout: 30000,
     navigationTimeout: 60000,
-    // Enhanced screenshot options
-    screenshot: {
-      mode: 'only-on-failure',
-      fullPage: true,
-      animations: 'disabled'
-    },
   },
   projects: [
     {
@@ -70,10 +65,12 @@ export default defineConfig({
   // No web server needed - testing against existing applications
   // AI-specific configurations
   expect: {
-    // Visual comparison threshold for AI-powered visual testing
-    threshold: 0.2,
     // Animation handling for better visual comparisons
-    animations: 'disabled',
+    timeout: 10000,
+    toHaveScreenshot: {
+      threshold: 0.2,
+      animations: 'disabled'
+    }
   },
   // Global setup for AI services
   globalSetup: require.resolve('./src/core/global-setup.ts'),
