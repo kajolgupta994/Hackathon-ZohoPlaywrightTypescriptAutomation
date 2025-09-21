@@ -318,7 +318,7 @@ jobs:
       - name: Run post-deployment tests
         run: npm run test:smoke
         env:
-          BASE_URL: ${{ secrets.TEST_BASE_URL }}
+          BASE_URL: ${{ secrets.BASE_URL || 'https://your-zoho-app.com' }}
 
   # Notify on Failure
   notify-failure:
