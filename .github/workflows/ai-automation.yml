@@ -109,9 +109,9 @@ jobs:
         run: npm run test:smoke -- --project=${{ matrix.browser }}
         env:
           GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
-          BASE_URL: ${{ secrets.BASE_URL }}
-          ZOHO_RECRUIT_API_KEY: ${{ secrets.ZOHO_RECRUIT_API_KEY }}
-          ZOHO_PEOPLE_API_KEY: ${{ secrets.ZOHO_PEOPLE_API_KEY }}
+          BASE_URL: ${{ secrets.BASE_URL || 'https://your-zoho-app.com' }}
+          ZOHO_RECRUIT_API_KEY: ${{ secrets.ZOHO_RECRUIT_API_KEY || '' }}
+          ZOHO_PEOPLE_API_KEY: ${{ secrets.ZOHO_PEOPLE_API_KEY || '' }}
           
       - name: Upload test results
         uses: actions/upload-artifact@v4
@@ -149,7 +149,7 @@ jobs:
         run: npm run test:visual
         env:
           GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
-          BASE_URL: ${{ secrets.BASE_URL }}
+          BASE_URL: ${{ secrets.BASE_URL || 'https://your-zoho-app.com' }}
           
       - name: Upload visual test results
         uses: actions/upload-artifact@v4
@@ -193,9 +193,9 @@ jobs:
         run: npm run test:regression -- --project=${{ matrix.browser }} --shard=${{ matrix.shard }}/4
         env:
           GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
-          BASE_URL: ${{ secrets.BASE_URL }}
-          ZOHO_RECRUIT_API_KEY: ${{ secrets.ZOHO_RECRUIT_API_KEY }}
-          ZOHO_PEOPLE_API_KEY: ${{ secrets.ZOHO_PEOPLE_API_KEY }}
+          BASE_URL: ${{ secrets.BASE_URL || 'https://your-zoho-app.com' }}
+          ZOHO_RECRUIT_API_KEY: ${{ secrets.ZOHO_RECRUIT_API_KEY || '' }}
+          ZOHO_PEOPLE_API_KEY: ${{ secrets.ZOHO_PEOPLE_API_KEY || '' }}
           
       - name: Upload test results
         uses: actions/upload-artifact@v4
