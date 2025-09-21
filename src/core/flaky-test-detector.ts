@@ -1,5 +1,6 @@
 import { Logger } from './logger';
 import { AIEngine } from './ai-engine';
+import { getErrorMessage } from '../utils/error-handler';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -50,7 +51,7 @@ export class FlakyTestDetector {
       
       this.logger.debug(`Recorded test result: ${result.testName} - ${result.status}`);
     } catch (error) {
-      this.logger.error('Failed to record test result', { error: error.message, result });
+      this.logger.error('Failed to record test result', { error: getErrorMessage(error), result });
     }
   }
 
@@ -73,7 +74,7 @@ export class FlakyTestDetector {
 
       return flakyTests;
     } catch (error) {
-      this.logger.error('Failed to detect flaky tests', { error: error.message });
+      this.logger.error('Failed to detect flaky tests', { error: getErrorMessage(error) });
       throw error;
     }
   }
@@ -93,7 +94,7 @@ export class FlakyTestDetector {
       const analysis = await this.analyzeTestFlakiness(testName, testResults);
       return analysis.recommendations;
     } catch (error) {
-      this.logger.error('Failed to get recommendations', { error: error.message });
+      this.logger.error('Failed to get recommendations', { error: getErrorMessage(error) });
       return ['Unable to generate recommendations'];
     }
   }
@@ -123,7 +124,7 @@ export class FlakyTestDetector {
         aiAnalysis = testAnalysis;
       }
     } catch (error) {
-      this.logger.warn('AI analysis failed, using statistical analysis only', { error: error.message });
+      this.logger.warn('AI analysis failed, using statistical analysis only', { error: getErrorMessage(error) });
     }
 
     // Combine analyses
@@ -330,7 +331,7 @@ export class FlakyTestDetector {
       const data = fs.readFileSync(this.resultsFile, 'utf8');
       return JSON.parse(data);
     } catch (error) {
-      this.logger.error('Failed to load test results', { error: error.message });
+      this.logger.error('Failed to load test results', { error: getErrorMessage(error) });
       return [];
     }
   }
@@ -346,7 +347,7 @@ export class FlakyTestDetector {
       }
       fs.writeFileSync(this.resultsFile, JSON.stringify(results, null, 2));
     } catch (error) {
-      this.logger.error('Failed to save test results', { error: error.message });
+      this.logger.error('Failed to save test results', { error: getErrorMessage(error) });
     }
   }
 }

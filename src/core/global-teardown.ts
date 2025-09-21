@@ -1,5 +1,6 @@
 import { FullConfig } from '@playwright/test';
 import { Logger } from './logger';
+import { getErrorMessage } from '../utils/error-handler';
 import { FlakyTestDetector } from './flaky-test-detector';
 import { VisualValidator } from './visual-validator';
 import * as fs from 'fs';
@@ -29,7 +30,7 @@ async function globalTeardown(config: FullConfig) {
     
     logger.info('Global teardown completed successfully');
   } catch (error) {
-    logger.error('Global teardown failed', { error: error.message });
+    logger.error('Global teardown failed', { error: getErrorMessage(error) });
   }
 }
 
@@ -67,7 +68,7 @@ async function analyzeFlakyTests(): Promise<void> {
       logger.info('No flaky tests detected');
     }
   } catch (error) {
-    logger.error('Flaky test analysis failed', { error: error.message });
+    logger.error('Flaky test analysis failed', { error: getErrorMessage(error) });
   }
 }
 
@@ -115,7 +116,7 @@ async function cleanupOldFiles(): Promise<void> {
     
     logger.info('File cleanup completed');
   } catch (error) {
-    logger.error('File cleanup failed', { error: error.message });
+    logger.error('File cleanup failed', { error: getErrorMessage(error) });
   }
 }
 
@@ -158,7 +159,7 @@ async function generateAIInsights(): Promise<void> {
     
     logger.info(`AI insights generated: ${insightsPath}`);
   } catch (error) {
-    logger.error('AI insights generation failed', { error: error.message });
+    logger.error('AI insights generation failed', { error: getErrorMessage(error) });
   }
 }
 
@@ -242,7 +243,7 @@ npm run test:flaky-detect
     
     logger.info('Final reports generated successfully');
   } catch (error) {
-    logger.error('Final report generation failed', { error: error.message });
+    logger.error('Final report generation failed', { error: getErrorMessage(error) });
   }
 }
 

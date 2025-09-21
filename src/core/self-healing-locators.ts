@@ -1,5 +1,6 @@
 import { Page, Locator } from '@playwright/test';
 import { Logger } from './logger';
+import { getErrorMessage } from '../utils/error-handler';
 import { AIEngine } from './ai-engine';
 
 /**
@@ -51,13 +52,13 @@ export class SelfHealingLocators {
             return locator;
           }
         } catch (error) {
-          this.logger.debug(`Strategy failed: ${strategy}`, { error: error.message });
+          this.logger.debug(`Strategy failed: ${strategy}`, { error: getErrorMessage(error) });
         }
       }
 
       throw new Error(`No working locator found for: ${description}`);
     } catch (error) {
-      this.logger.error(`Failed to find locator for: ${description}`, { error: error.message });
+      this.logger.error(`Failed to find locator for: ${description}`, { error: getErrorMessage(error) });
       throw error;
     }
   }
@@ -94,7 +95,7 @@ export class SelfHealingLocators {
         const aiStrategies = await this.aiEngine.generateSelfHealingLocator(description, page);
         strategies.push(...this.parseAIStrategies(aiStrategies));
       } catch (error) {
-        this.logger.warn('AI strategy generation failed, using fallback strategies', { error: error.message });
+        this.logger.warn('AI strategy generation failed, using fallback strategies', { error: getErrorMessage(error) });
       }
     }
 

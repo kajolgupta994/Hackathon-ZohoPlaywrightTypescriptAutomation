@@ -187,7 +187,7 @@ export class TestGenerator {
    */
   private buildTestGenerationPrompt(request: TestGenerationRequest): string {
     return `
-      Generate comprehensive Playwright TypeScript test cases for:
+      Generate a single, complete Playwright TypeScript test case for:
       
       Feature: ${request.feature}
       User Story: ${request.userStory}
@@ -196,25 +196,25 @@ export class TestGenerator {
       Priority: ${request.priority}
       
       Requirements:
-      1. Use Page Object Model pattern
-      2. Include proper error handling and assertions
-      3. Use self-healing locators with data-testid attributes
-      4. Implement smart waits for dynamic content
-      5. Include both positive and negative test scenarios
-      6. Add proper test data setup and cleanup
-      7. Use descriptive test names and comments
-      8. Include accessibility testing where applicable
-      9. Add visual validation for UI components
-      10. Implement proper test isolation
+      1. Generate ONLY ONE complete test case
+      2. Use proper TypeScript syntax with no syntax errors
+      3. Include proper imports and test structure
+      4. Use descriptive test name with @tags
+      5. Include proper error handling
+      6. Use data-testid selectors
+      7. Include proper assertions
+      8. Test should be self-contained and runnable
       
-      For Zoho application context:
-      - Test Zoho Recruit API integration
-      - Test Zoho People Plus API integration
-      - Test data synchronization between systems
-      - Test authentication and authorization
-      - Test responsive design across devices
+      Format:
+      import { test, expect } from '@playwright/test';
       
-      Return only the test code, no explanations.
+      test.describe('Feature Name @tag', () => {
+        test('Test Name @tag', async ({ page }) => {
+          // Test implementation
+        });
+      });
+      
+      Return ONLY the complete test code, no explanations or additional text.
     `;
   }
 

@@ -283,7 +283,8 @@ export class CandidatePage extends ZohoAppPage {
       const download = await downloadPromise;
       
       this.logger.info(`Exported candidate data as ${format}`);
-      allure.attachment(`Exported Data (${format})`, download.path() || 'Download completed', 'text/plain');
+      const downloadPath = await download.path();
+      allure.attachment(`Exported Data (${format})`, downloadPath || 'Download completed', 'text/plain');
     });
   }
 

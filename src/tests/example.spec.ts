@@ -1,5 +1,6 @@
 import { test, expect } from '../core/test-base';
 import { allure } from 'allure-playwright';
+import { getErrorMessage } from '../utils/error-handler';
 
 /**
  * Example Test Suite
@@ -87,10 +88,10 @@ test.describe('Example Tests @example @smoke', () => {
       } catch (error) {
         // This is expected - demonstrate error handling
         allure.parameter('Error Type', 'Navigation Timeout');
-        allure.parameter('Error Message', error.message);
+        allure.parameter('Error Message', getErrorMessage(error));
         
         // Verify we handled the error gracefully
-        expect(error.message).toContain('timeout');
+        expect(getErrorMessage(error)).toContain('timeout');
       }
     });
   });

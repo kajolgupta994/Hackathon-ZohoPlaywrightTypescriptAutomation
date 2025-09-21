@@ -3,6 +3,7 @@ import { SelfHealingLocators } from '../core/self-healing-locators';
 import { SmartWaits } from '../core/smart-waits';
 import { VisualValidator } from '../core/visual-validator';
 import { Logger } from '../core/logger';
+import { getErrorMessage } from '../utils/error-handler';
 
 /**
  * Base Page Object for Zoho Internal Application
@@ -255,7 +256,7 @@ export class ZohoAppPage {
       await this.waitForAppReady();
       this.logger.info('Logged out successfully');
     } catch (error) {
-      this.logger.warn('Logout failed', { error: error.message });
+      this.logger.warn('Logout failed', { error: getErrorMessage(error) });
     }
   }
 

@@ -2,6 +2,7 @@ import { test as base, Page, BrowserContext, TestInfo } from '@playwright/test';
 import { ZohoAppPage } from '../pages/zoho-app-page';
 import { FlakyTestDetector } from './flaky-test-detector';
 import { Logger } from './logger';
+import { getErrorMessage } from '../utils/error-handler';
 import { allure } from 'allure-playwright';
 
 /**
@@ -43,7 +44,7 @@ export class TestBase {
       await this.setupFlakyTestDetection();
       
     } catch (error) {
-      this.logger.error('Test setup failed', { error: error.message });
+      this.logger.error('Test setup failed', { error: getErrorMessage(error) });
       throw error;
     }
   }
@@ -74,7 +75,7 @@ export class TestBase {
       await this.zohoAppPage.cleanup();
       
     } catch (error) {
-      this.logger.error('Test teardown failed', { error: error.message });
+      this.logger.error('Test teardown failed', { error: getErrorMessage(error) });
     }
   }
 
@@ -159,7 +160,7 @@ export class TestBase {
       }
       
     } catch (error) {
-      this.logger.error('Failed to add failure attachments', { error: error.message });
+      this.logger.error('Failed to add failure attachments', { error: getErrorMessage(error) });
     }
   }
 

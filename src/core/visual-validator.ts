@@ -1,8 +1,9 @@
 import { Page, expect } from '@playwright/test';
 import { Logger } from './logger';
+import { getErrorMessage } from '../utils/error-handler';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as pixelmatch from 'pixelmatch';
+import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
 import sharp from 'sharp';
 
@@ -92,7 +93,7 @@ export class VisualValidator {
       
       return comparison;
     } catch (error) {
-      this.logger.error(`Visual comparison failed for ${testName}`, { error: error.message });
+      this.logger.error(`Visual comparison failed for ${testName}`, { error: getErrorMessage(error) });
       throw error;
     }
   }
@@ -153,7 +154,7 @@ export class VisualValidator {
       
       return comparison;
     } catch (error) {
-      this.logger.error(`Full page comparison failed for ${testName}`, { error: error.message });
+      this.logger.error(`Full page comparison failed for ${testName}`, { error: getErrorMessage(error) });
       throw error;
     }
   }
@@ -262,7 +263,7 @@ export class VisualValidator {
         threshold
       };
     } catch (error) {
-      this.logger.error(`Image comparison failed for ${testName}`, { error: error.message });
+      this.logger.error(`Image comparison failed for ${testName}`, { error: getErrorMessage(error) });
       throw error;
     }
   }
@@ -301,7 +302,7 @@ export class VisualValidator {
       fs.copyFileSync(currentPath, baselinePath);
       this.logger.info(`Baseline updated: ${baselinePath}`);
     } catch (error) {
-      this.logger.error('Failed to update baseline', { error: error.message });
+      this.logger.error('Failed to update baseline', { error: getErrorMessage(error) });
       throw error;
     }
   }
@@ -336,7 +337,7 @@ export class VisualValidator {
         }
       }
     } catch (error) {
-      this.logger.error('Failed to cleanup old screenshots', { error: error.message });
+      this.logger.error('Failed to cleanup old screenshots', { error: getErrorMessage(error) });
     }
   }
 
@@ -373,7 +374,7 @@ export class VisualValidator {
         recentFailures
       };
     } catch (error) {
-      this.logger.error('Failed to get visual test stats', { error: error.message });
+      this.logger.error('Failed to get visual test stats', { error: getErrorMessage(error) });
       return {
         totalBaselines: 0,
         totalScreenshots: 0,

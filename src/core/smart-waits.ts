@@ -1,5 +1,6 @@
 import { Page, Locator, expect } from '@playwright/test';
 import { Logger } from './logger';
+import { getErrorMessage } from '../utils/error-handler';
 import { AIEngine } from './ai-engine';
 
 /**
@@ -41,7 +42,7 @@ export class SmartWaits {
 
       this.logger.debug(`Element waited successfully: ${locator.toString()}`);
     } catch (error) {
-      this.logger.error(`Element wait failed: ${locator.toString()}`, { error: error.message });
+      this.logger.error(`Element wait failed: ${locator.toString()}`, { error: getErrorMessage(error) });
       throw error;
     }
   }
@@ -54,7 +55,7 @@ export class SmartWaits {
       await page.waitForLoadState('networkidle', { timeout });
       this.logger.debug('Network idle state reached');
     } catch (error) {
-      this.logger.warn('Network idle wait timeout', { error: error.message });
+      this.logger.warn('Network idle wait timeout', { error: getErrorMessage(error) });
     }
   }
 
@@ -66,7 +67,7 @@ export class SmartWaits {
       await page.waitForResponse(apiPattern, { timeout });
       this.logger.debug(`API response received: ${apiPattern}`);
     } catch (error) {
-      this.logger.error(`API wait timeout: ${apiPattern}`, { error: error.message });
+      this.logger.error(`API wait timeout: ${apiPattern}`, { error: getErrorMessage(error) });
       throw error;
     }
   }
@@ -95,7 +96,7 @@ export class SmartWaits {
       await page.waitForTimeout(100);
       this.logger.debug('Animations completed');
     } catch (error) {
-      this.logger.warn('Animation wait failed', { error: error.message });
+      this.logger.warn('Animation wait failed', { error: getErrorMessage(error) });
     }
   }
 
@@ -127,7 +128,7 @@ export class SmartWaits {
 
       this.logger.debug('Element is stable');
     } catch (error) {
-      this.logger.warn('Element stability check failed', { error: error.message });
+      this.logger.warn('Element stability check failed', { error: getErrorMessage(error) });
     }
   }
 
@@ -154,7 +155,7 @@ export class SmartWaits {
         await this.executeCustomCondition(page, condition, timeout);
       }
     } catch (error) {
-      this.logger.warn('AI-enhanced wait failed, using basic wait', { error: error.message });
+      this.logger.warn('AI-enhanced wait failed, using basic wait', { error: getErrorMessage(error) });
     }
   }
 
@@ -192,7 +193,7 @@ export class SmartWaits {
         }
       }
     } catch (error) {
-      this.logger.warn('Smart wait execution failed', { error: error.message });
+      this.logger.warn('Smart wait execution failed', { error: getErrorMessage(error) });
     }
   }
 
@@ -213,7 +214,7 @@ export class SmartWaits {
         await page.waitForFunction(condition, { timeout });
       }
     } catch (error) {
-      this.logger.warn(`Custom condition failed: ${condition}`, { error: error.message });
+      this.logger.warn(`Custom condition failed: ${condition}`, { error: getErrorMessage(error) });
     }
   }
 
@@ -235,7 +236,7 @@ export class SmartWaits {
           return;
         }
       } catch (error) {
-        this.logger.debug('Condition check failed', { error: error.message });
+        this.logger.debug('Condition check failed', { error: getErrorMessage(error) });
       }
       
       await page.waitForTimeout(100);

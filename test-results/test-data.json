@@ -1,0 +1,50 @@
+{
+  "candidates": [
+    {
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "skills": [
+        "JavaScript",
+        "React",
+        "Node.js"
+      ],
+      "experience": "5 years",
+      "department": "Engineering"
+    },
+    {
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "skills": [
+        "Python",
+        "Django",
+        "PostgreSQL"
+      ],
+      "experience": "3 years",
+      "department": "Engineering"
+    }
+  ],
+  "positions": [
+    {
+      "title": "Senior Software Engineer",
+      "department": "Engineering",
+      "location": "San Francisco, CA",
+      "skills": [
+        "JavaScript",
+        "React",
+        "Node.js"
+      ],
+      "experience": "5+ years"
+    },
+    {
+      "title": "Marketing Manager",
+      "department": "Marketing",
+      "location": "New York, NY",
+      "skills": [
+        "Digital Marketing",
+        "Analytics",
+        "SEO"
+      ],
+      "experience": "3+ years"
+    }
+  ]
+}

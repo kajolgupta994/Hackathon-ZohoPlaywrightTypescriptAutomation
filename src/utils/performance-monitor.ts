@@ -1,5 +1,6 @@
 import { Page } from '@playwright/test';
 import { Logger } from '../core/logger';
+import { getErrorMessage } from './error-handler';
 
 interface PerformanceMetrics {
   pageLoadTime: number;
@@ -55,15 +56,15 @@ export class PerformanceMonitor {
         };
 
         const originalXHR = XMLHttpRequest.prototype.open;
-        XMLHttpRequest.prototype.open = function(...args) {
+        XMLHttpRequest.prototype.open = function(method: string, url: string | URL, async: boolean = true, username?: string | null, password?: string | null) {
           (window as any).networkRequests++;
-          return originalXHR.apply(this, args);
+          return originalXHR.call(this, method, url, async, username, password);
         };
       });
 
       this.logger.debug(`Started performance monitoring for: ${testName}`);
     } catch (error) {
-      this.logger.error('Failed to start performance monitoring', { error: error.message });
+      this.logger.error('Failed to start performance monitoring', { error: getErrorMessage(error) });
     }
   }
 
@@ -83,15 +84,15 @@ export class PerformanceMonitor {
         const cls = performance.getEntriesByType('layout-shift').reduce((sum, entry) => sum + (entry as any).value, 0);
 
         // Calculate Speed Index (simplified)
-        const speedIndex = navigation.loadEventEnd - navigation.navigationStart;
+        const speedIndex = navigation.loadEventEnd - navigation.fetchStart;
 
         // Calculate Total Blocking Time (simplified)
         const longTasks = performance.getEntriesByType('longtask');
         const totalBlockingTime = longTasks.reduce((sum, task) => sum + task.duration, 0);
 
         return {
-          pageLoadTime: navigation.loadEventEnd - navigation.navigationStart,
-          domContentLoaded: navigation.domContentLoadedEventEnd - navigation.navigationStart,
+          pageLoadTime: navigation.loadEventEnd - navigation.fetchStart,
+          domContentLoaded: navigation.domContentLoadedEventEnd - navigation.fetchStart,
           firstContentfulPaint: fcp ? fcp.startTime : 0,
           largestContentfulPaint: lcp ? lcp.startTime : 0,
           firstInputDelay: fid ? (fid as any).processingStart - fid.startTime : 0,
@@ -108,7 +109,7 @@ export class PerformanceMonitor {
       
       return metrics;
     } catch (error) {
-      this.logger.error('Failed to collect performance metrics', { error: error.message });
+      this.logger.error('Failed to collect performance metrics', { error: getErrorMessage(error) });
       return this.getDefaultMetrics();
     }
   }

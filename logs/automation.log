@@ -33,3 +33,29 @@
 2025-09-21T07:44:09.771Z [INFO] [TestGenerator] Generating tests for feature: Search and Discovery 
 2025-09-21T07:44:17.119Z [INFO] [TestGenerator] Generated 9 tests for Search and Discovery 
 2025-09-21T07:44:17.148Z [ERROR] [TestGeneratorCLI] CLI error {"error":"readline was closed"}
+2025-09-21T11:42:58.840Z [INFO] [GlobalSetup] Starting global setup for AI-driven automation framework 
+2025-09-21T11:43:06.661Z [INFO] [AIEngineSetup] AI engine initialized successfully 
+2025-09-21T11:43:06.667Z [INFO] [TestDataSetup] Test data setup completed 
+2025-09-21T11:43:15.472Z [ERROR] [EnvironmentVerification] Environment verification failed {"error":"page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n"}
+2025-09-21T11:43:15.474Z [ERROR] [GlobalSetup] Global setup failed {"error":"page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n"}
+2025-09-21T11:43:15.770Z [INFO] [GlobalTeardown] Starting global teardown for AI-driven automation framework 
+2025-09-21T11:43:15.776Z [INFO] [FlakyTestAnalysis] No flaky tests detected 
+2025-09-21T11:43:15.781Z [INFO] [FileCleanup] File cleanup completed 
+2025-09-21T11:43:15.787Z [INFO] [AIInsights] AI insights generated: C:\Users\Kajol\Playwright-Automation-Projects\ZohoPlaywrightTypescriptAutomation\test-results\ai-insights.json 
+2025-09-21T11:43:15.797Z [INFO] [GlobalTeardown] Global teardown completed successfully 
+2025-09-21T11:43:15.797Z [INFO] [FinalReports] Final reports generated successfully 
+2025-09-21T11:43:39.735Z [INFO] [GlobalSetup] Starting global setup for AI-driven automation framework 
+2025-09-21T11:43:47.304Z [INFO] [AIEngineSetup] AI engine initialized successfully 
+2025-09-21T11:43:47.310Z [INFO] [GlobalSetup] Global setup completed successfully 
+2025-09-21T11:43:47.309Z [INFO] [TestDataSetup] Test data setup completed 
+2025-09-21T11:43:55.567Z [ERROR] [Test-should demonstrate error handling @error-handling] Test setup failed {"error":"page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n"}
+2025-09-21T11:43:55.574Z [ERROR] [Test-should demonstrate visual testing @visual] Test setup failed {"error":"page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n"}
+2025-09-21T11:43:55.597Z [ERROR] [Test-should demonstrate AI test generation @ai] Test setup failed {"error":"page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n"}
+2025-09-21T11:43:55.591Z [ERROR] [Test-should demonstrate basic page navigation @basic] Test setup failed {"error":"page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n"}
+2025-09-21T11:43:55.599Z [ERROR] [Test-should demonstrate performance monitoring @performance] Test setup failed {"error":"page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n"}
+2025-09-21T11:43:56.989Z [INFO] [GlobalTeardown] Starting global teardown for AI-driven automation framework 
+2025-09-21T11:43:56.994Z [INFO] [FlakyTestAnalysis] No flaky tests detected 
+2025-09-21T11:43:57.012Z [INFO] [AIInsights] AI insights generated: C:\Users\Kajol\Playwright-Automation-Projects\ZohoPlaywrightTypescriptAutomation\test-results\ai-insights.json 
+2025-09-21T11:43:57.006Z [INFO] [FileCleanup] File cleanup completed 
+2025-09-21T11:43:57.020Z [INFO] [FinalReports] Final reports generated successfully 
+2025-09-21T11:43:57.021Z [INFO] [GlobalTeardown] Global teardown completed successfully 

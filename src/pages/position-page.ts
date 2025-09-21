@@ -374,7 +374,8 @@ export class PositionPage extends ZohoAppPage {
       const download = await downloadPromise;
       
       this.logger.info(`Exported positions as ${format}`);
-      allure.attachment(`Exported Positions (${format})`, download.path() || 'Download completed', 'text/plain');
+      const downloadPath = await download.path();
+      allure.attachment(`Exported Positions (${format})`, downloadPath || 'Download completed', 'text/plain');
     });
   }
 }
