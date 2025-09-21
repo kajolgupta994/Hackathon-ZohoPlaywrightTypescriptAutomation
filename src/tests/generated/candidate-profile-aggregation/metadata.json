@@ -1,0 +1,134 @@
+[
+  {
+    "testName": "Generated Test 1",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest(```typescript\nimport { test, expect } from '@playwright/test';\nimport { CandidateProfilePage } from './candidateProfilePage'; // Page Object Model\nimport { RecruitAPI } from './recruitAPI'; // API interaction\nimport { PeoplePlusAPI } from './peoplePlusAPI'; // API interaction\n\nconst recruitAPI = new RecruitAPI();\nconst peoplePlusAPI = new PeoplePlusAPI();\n\ntest.beforeEach(async ({ page }) => {\n  await page.goto('your-application-url'); // Replace with your URL\n  await page.getByRole('button', { name: 'Login' }).click(); // Adjust as needed\n  // Add login logic here using data-testid attributes\n  await page.getByTestId('username').fill('your_username');\n  await page.getByTestId('password').fill('your_password');\n  await page.getByTestId('login-button').click();\n\n  // Wait for successful login, use smart waits\n  await page.waitForSelector('[data-testid=\"candidate-profile-section\"]', { state: 'attached' });\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data here - e.g., delete created profiles\n  await page.close();\n});",
+    "description": "Test for Candidate Profile Aggregation",
+    "tags": [
+      "candidate",
+      "profile",
+      "aggregation"
+    ],
+    "priority": "high",
+    "estimatedDuration": 12.5
+  },
+  {
+    "testName": "Happy Path: View Unified Profile with Data from Both Systems",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Happy Path: View Unified Profile with Data from Both Systems', async ({ page }) => {\n  const profilePage = new CandidateProfilePage(page);\n  await profilePage.navigateToCandidateProfile('candidateId123'); // Replace with valid ID\n  await expect(profilePage.recruitDataSection).toBeVisible();\n  await expect(profilePage.peoplePlusDataSection).toBeVisible();\n  await expect(profilePage.nameField).toContainText('John Doe'); // Example assertion\n});",
+    "description": "Test for Candidate Profile Aggregation",
+    "tags": [
+      "candidate",
+      "profile",
+      "aggregation"
+    ],
+    "priority": "high",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "Edge Case: Conflicting Data is Highlighted",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Edge Case: Conflicting Data is Highlighted', async ({ page }) => {\n  const profilePage = new CandidateProfilePage(page);\n  await profilePage.navigateToCandidateProfile('candidateId456'); // Conflicting data ID\n  await expect(profilePage.conflictIndicator).toBeVisible();\n});",
+    "description": "Test for Candidate Profile Aggregation",
+    "tags": [
+      "candidate",
+      "profile",
+      "aggregation"
+    ],
+    "priority": "high",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "Error Handling: Profile Not Found",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Error Handling: Profile Not Found', async ({ page }) => {\n  const profilePage = new CandidateProfilePage(page);\n  await profilePage.navigateToCandidateProfile('invalidCandidateId');\n  await expect(profilePage.notFoundMessage).toBeVisible();\n});",
+    "description": "Test for Candidate Profile Aggregation",
+    "tags": [
+      "candidate",
+      "profile",
+      "aggregation"
+    ],
+    "priority": "high",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "Boundary Condition: Very Large Profile Data",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Boundary Condition: Very Large Profile Data', async ({ page }) => {\n  const profilePage = new CandidateProfilePage(page);\n  await profilePage.navigateToCandidateProfile('largeDataCandidateId'); // Large data ID\n  await expect(profilePage.loadingIndicator).not.toBeVisible(); // Check loading completes\n  // Add assertions for data display within time limits\n});",
+    "description": "Test for Candidate Profile Aggregation",
+    "tags": [
+      "candidate",
+      "profile",
+      "aggregation"
+    ],
+    "priority": "high",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "Integration: Zoho Recruit API Integration",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Integration: Zoho Recruit API Integration', async ({ page }) => {\n  const candidate = await recruitAPI.getCandidate('candidateId123');\n  expect(candidate).toBeDefined();\n  // Assert specific data fields from the API response\n});",
+    "description": "Test for Candidate Profile Aggregation",
+    "tags": [
+      "candidate",
+      "profile",
+      "aggregation"
+    ],
+    "priority": "high",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "Integration: Zoho People Plus API Integration",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Integration: Zoho People Plus API Integration', async ({ page }) => {\n  const employee = await peoplePlusAPI.getEmployee('employeeId123'); // Replace with valid ID\n  expect(employee).toBeDefined();\n  // Assert specific data fields from the API response\n});",
+    "description": "Test for Candidate Profile Aggregation",
+    "tags": [
+      "candidate",
+      "profile",
+      "aggregation"
+    ],
+    "priority": "high",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "Integration: Data Synchronization",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Integration: Data Synchronization', async ({ page }) => {\n    const recruitData = await recruitAPI.getCandidate('candidateId123');\n    const peoplePlusData = await peoplePlusAPI.getEmployee('employeeId123');\n    // Compare relevant data fields from both APIs for synchronization\n    expect(recruitData.email).toBe(peoplePlusData.email); // Example assertion\n});",
+    "description": "Test for Candidate Profile Aggregation",
+    "tags": [
+      "candidate",
+      "profile",
+      "aggregation"
+    ],
+    "priority": "high",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "Authentication & Authorization",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Authentication & Authorization', async ({ page }) => {\n  // Simulate unauthorized access - try to access profile without login\n  await page.goto('your-application-url/profile/candidateId123');\n  await expect(page.getByRole('heading', { name: 'Login' })).toBeVisible();\n});",
+    "description": "Test for Candidate Profile Aggregation",
+    "tags": [
+      "candidate",
+      "profile",
+      "aggregation"
+    ],
+    "priority": "high",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "Responsive Design: Mobile View",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Responsive Design: Mobile View', async ({ page }) => {\n  await page.setViewportSize({ width: 375, height: 667 }); // iPhone 8 size\n  const profilePage = new CandidateProfilePage(page);\n  await profilePage.navigateToCandidateProfile('candidateId123');\n  // Assertions for mobile view layout and responsiveness\n  await expect(profilePage.mobileSpecificElement).toBeVisible(); // Replace with actual element\n});",
+    "description": "Test for Candidate Profile Aggregation",
+    "tags": [
+      "candidate",
+      "profile",
+      "aggregation"
+    ],
+    "priority": "high",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "Accessibility: Profile Page",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Accessibility: Profile Page', async ({ page }) => {\n  const profilePage = new CandidateProfilePage(page);\n  await profilePage.",
+    "description": "Test for Candidate Profile Aggregation",
+    "tags": [
+      "candidate",
+      "profile",
+      "aggregation"
+    ],
+    "priority": "high",
+    "estimatedDuration": 10
+  }
+]

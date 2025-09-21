@@ -1,0 +1,151 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\Kajol\\Playwright-Automation-Projects\\ZohoPlaywrightTypescriptAutomation\\playwright.config.ts",
+    "rootDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/src/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": "C:\\Users\\Kajol\\Playwright-Automation-Projects\\ZohoPlaywrightTypescriptAutomation\\src\\core\\global-setup.ts",
+    "globalTeardown": "C:\\Users\\Kajol\\Playwright-Automation-Projects\\ZohoPlaywrightTypescriptAutomation\\src\\core\\global-teardown.ts",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "playwright-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "test-results.xml"
+        }
+      ],
+      [
+        "C:\\Users\\Kajol\\Playwright-Automation-Projects\\ZohoPlaywrightTypescriptAutomation\\node_modules\\allure-playwright\\dist\\index.js",
+        {
+          "outputFolder": "allure-results",
+          "detail": true,
+          "suiteTitle": false,
+          "attachments": true
+        }
+      ],
+      [
+        "list",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/src/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/src/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/src/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "Mobile Chrome",
+        "name": "Mobile Chrome",
+        "testDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/src/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "Mobile Safari",
+        "name": "Mobile Safari",
+        "testDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/src/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 11,
+    "webServer": {
+      "command": "npm run dev",
+      "url": "http://localhost:3000",
+      "reuseExistingServer": true
+    }
+  },
+  "suites": [],
+  "errors": [
+    {
+      "message": "Error: Process from config.webServer was not able to start. Exit code: 1",
+      "stack": "Error: Process from config.webServer was not able to start. Exit code: 1"
+    }
+  ],
+  "stats": {
+    "startTime": "2025-09-21T09:31:43.037Z",
+    "duration": 1560.734,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

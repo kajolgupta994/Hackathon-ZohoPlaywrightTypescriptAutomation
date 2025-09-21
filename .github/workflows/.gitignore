@@ -1,0 +1,17 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Playwright outputs
+playwright-report/
+test-results/
+*.zip
+*.mp4
+*.mov
+*.avi
+
+# IDE / OS files
+.DS_Store
+Thumbs.db

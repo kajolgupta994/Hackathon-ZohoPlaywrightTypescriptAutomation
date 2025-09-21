@@ -1,0 +1,98 @@
+[
+  {
+    "testName": "Generated Test 1",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest(```typescript\nimport { test, expect } from '@playwright/test';\nimport { PositionPage } from './position.page'; // Page Object Model\nimport { ZohoRecruitAPI } from './zohoRecruit.api';\nimport { ZohoPeoplePlusAPI } from './zohoPeoplePlus.api';\n\nconst recruitAPI = new ZohoRecruitAPI();\nconst peoplePlusAPI = new ZohoPeoplePlusAPI();\n\ntest.beforeEach(async ({ page }) => {\n  await page.goto('/positions'); // Navigate to position creation page\n  await page.waitForSelector('[data-testid=\"position-creation-form\"]');\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup: Delete created position if needed\n  await page.close();\n});",
+    "description": "Test for Position Management",
+    "tags": [
+      "position",
+      "management",
+      "creation"
+    ],
+    "priority": "high",
+    "estimatedDuration": 15
+  },
+  {
+    "testName": "Create and publish a position successfully",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Create and publish a position successfully', async ({ page }) => {\n  const positionPage = new PositionPage(page);\n  const positionData = {\n    title: 'Software Engineer',\n    description: 'Experienced Software Engineer needed...',\n    // ... other fields\n  };\n  await positionPage.createPosition(positionData);\n  await positionPage.publishPosition();\n  await expect(page.locator('[data-testid=\"position-published-message\"]')).toBeVisible();\n  // Verify in Zoho Recruit API\n  const recruitPosition = await recruitAPI.getPositionByTitle(positionData.title);\n  expect(recruitPosition).toBeDefined();\n});",
+    "description": "Test for Position Management",
+    "tags": [
+      "position",
+      "management",
+      "creation"
+    ],
+    "priority": "high",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "Validate required fields",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Validate required fields', async ({ page }) => {\n  const positionPage = new PositionPage(page);\n  await positionPage.createPosition({}); // Empty data\n  await expect(page.locator('[data-testid=\"error-title\"]')).toBeVisible();\n  // ... other required field validations\n});",
+    "description": "Test for Position Management",
+    "tags": [
+      "position",
+      "management",
+      "creation"
+    ],
+    "priority": "high",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "Handle invalid input for position title",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Handle invalid input for position title', async ({ page }) => {\n  const positionPage = new PositionPage(page);\n  await positionPage.createPosition({ title: '123' }); // Invalid title\n  await expect(page.locator('[data-testid=\"error-title\"]')).toBeVisible();\n});",
+    "description": "Test for Position Management",
+    "tags": [
+      "position",
+      "management",
+      "creation"
+    ],
+    "priority": "high",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "Test boundary conditions: Long description",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Test boundary conditions: Long description', async ({ page }) => {\n  const positionPage = new PositionPage(page);\n  const longDescription = 'a'.repeat(10000); // Exceed character limit\n  await positionPage.createPosition({ description: longDescription });\n  await expect(page.locator('[data-testid=\"error-description\"]')).toBeVisible();\n});",
+    "description": "Test for Position Management",
+    "tags": [
+      "position",
+      "management",
+      "creation"
+    ],
+    "priority": "high",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "Test position search",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Test position search', async ({ page }) => {\n  const positionPage = new PositionPage(page);\n  const positionData = { title: 'Test Position' };\n  await positionPage.createPosition(positionData);\n  await positionPage.publishPosition();\n  await page.goto('/positions/search');\n  await page.fill('[data-testid=\"search-input\"]', positionData.title);\n  await page.click('[data-testid=\"search-button\"]');\n  await expect(page.locator(`[data-testid=\"position-item-${positionData.title}\"]`)).toBeVisible();\n});",
+    "description": "Test for Position Management",
+    "tags": [
+      "position",
+      "management",
+      "creation"
+    ],
+    "priority": "high",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "API Integration: Zoho Recruit & Zoho People Plus",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('API Integration: Zoho Recruit & Zoho People Plus', async ({ page }) => {\n  const positionPage = new PositionPage(page);\n  const positionData = { title: 'API Integration Test' };\n  await positionPage.createPosition(positionData);\n  await positionPage.publishPosition();\n  // Verify data synchronization between Zoho Recruit and Zoho People Plus APIs\n  const recruitPosition = await recruitAPI.getPositionByTitle(positionData.title);\n  const peoplePlusPosition = await peoplePlusAPI.getPositionByTitle(positionData.title);\n  expect(recruitPosition).toBeDefined();\n  expect(peoplePlusPosition).toBeDefined();\n  expect(recruitPosition.title).toBe(peoplePlusPosition.title); // Example synchronization check\n});",
+    "description": "Test for Position Management",
+    "tags": [
+      "position",
+      "management",
+      "creation"
+    ],
+    "priority": "high",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "Responsive Design",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Responsive Design', async ({ page, browserName }) => {\n  const positionPage = new PositionPage(page);\n  const viewportSizes = [\n    { width: 375, height: 667 }, // iPhone 8\n    { width: 1280, height: 800 }, // Desktop\n    { width: 768, height: 1024 }, // iPad\n  ];\n  for (const size of viewportSizes) {\n    await page.setViewportSize(size);\n    await positionPage.createPosition({ title: `Responsive Test ${browserName}` });\n    // Add visual validation here using expect.toMatchSnapshot()\n    // await expect(",
+    "description": "Test for Position Management",
+    "tags": [
+      "position",
+      "management",
+      "creation"
+    ],
+    "priority": "high",
+    "estimatedDuration": 20
+  }
+]

@@ -1,0 +1,110 @@
+[
+  {
+    "testName": "Generated Test 1",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest(```typescript\nimport { test, expect } from '@playwright/test';\nimport { HomePage } from './pages/HomePage';\nimport { CandidateListPage } from './pages/CandidateListPage';\nimport { LoginPage } from './pages/LoginPage';\nimport { api } from './api/api';\n\n\n// Test Data\nconst testData = {\n  validUser: { username: 'testuser', password: 'password123' },\n  candidateData: { name: 'Test Candidate', skill: 'Testing' },\n};\n\n\n// Test Setup and Teardown\n\ntest.beforeEach(async ({ page }) => {\n  await page.goto('/login');\n  const loginPage = new LoginPage(page);\n  await loginPage.login(testData.validUser.username, testData.validUser.password);\n});\n\ntest.afterEach(async ({ page }) => {\n  await page.close();\n});\n\n\n// Test Cases",
+    "description": "Test for Search and Discovery",
+    "tags": [
+      "search",
+      "discovery",
+      "filtering"
+    ],
+    "priority": "medium",
+    "estimatedDuration": 19.5
+  },
+  {
+    "testName": "Happy Path: Search for a candidate by name",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Happy Path: Search for a candidate by name', async ({ page }) => {\n  const homePage = new HomePage(page);\n  const candidateListPage = new CandidateListPage(page);\n  await homePage.navigateToCandidates();\n  await candidateListPage.searchCandidate(testData.candidateData.name);\n  await expect(candidateListPage.candidateList).toContainText(testData.candidateData.name);\n});",
+    "description": "Test for Search and Discovery",
+    "tags": [
+      "search",
+      "discovery",
+      "filtering"
+    ],
+    "priority": "medium",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "Edge Case: Search with special characters",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Edge Case: Search with special characters', async ({ page }) => {\n  const homePage = new HomePage(page);\n  const candidateListPage = new CandidateListPage(page);\n  await homePage.navigateToCandidates();\n  await candidateListPage.searchCandidate('!@#$%^&*()_+=-`~[]\\{}|;\\':\",./<>?');\n  // Assertions based on expected behavior with special characters\n});",
+    "description": "Test for Search and Discovery",
+    "tags": [
+      "search",
+      "discovery",
+      "filtering"
+    ],
+    "priority": "medium",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "Error Handling: Search for a non-existent candidate",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Error Handling: Search for a non-existent candidate', async ({ page }) => {\n  const homePage = new HomePage(page);\n  const candidateListPage = new CandidateListPage(page);\n  await homePage.navigateToCandidates();\n  await candidateListPage.searchCandidate('NonExistentCandidate');\n  await expect(candidateListPage.noResultsMessage).toBeVisible();\n});",
+    "description": "Test for Search and Discovery",
+    "tags": [
+      "search",
+      "discovery",
+      "filtering"
+    ],
+    "priority": "medium",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "Boundary Condition: Search with empty string",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Boundary Condition: Search with empty string', async ({ page }) => {\n  const homePage = new HomePage(page);\n  const candidateListPage = new CandidateListPage(page);\n  await homePage.navigateToCandidates();\n  await candidateListPage.searchCandidate('');\n  // Assertions based on expected behavior with empty search\n});",
+    "description": "Test for Search and Discovery",
+    "tags": [
+      "search",
+      "discovery",
+      "filtering"
+    ],
+    "priority": "medium",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "Integration: Zoho Recruit API Integration - Search",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Integration: Zoho Recruit API Integration - Search', async ({ page }) => {\n  const homePage = new HomePage(page);\n  const candidateListPage = new CandidateListPage(page);\n  await homePage.navigateToCandidates();\n  const apiCandidates = await api.getZohoRecruitCandidates();\n  const apiCandidateName = apiCandidates[0].name;\n  await candidateListPage.searchCandidate(apiCandidateName);\n  await expect(candidateListPage.candidateList).toContainText(apiCandidateName);\n});",
+    "description": "Test for Search and Discovery",
+    "tags": [
+      "search",
+      "discovery",
+      "filtering"
+    ],
+    "priority": "medium",
+    "estimatedDuration": 15
+  },
+  {
+    "testName": "Integration: Zoho People Plus API Integration - Data Synchronization",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Integration: Zoho People Plus API Integration - Data Synchronization', async ({page}) => {\n    const peoplePlusData = await api.getZohoPeoplePlusData();\n    // Assertions comparing data from Zoho People Plus with data displayed in the UI\n});",
+    "description": "Test for Search and Discovery",
+    "tags": [
+      "search",
+      "discovery",
+      "filtering"
+    ],
+    "priority": "medium",
+    "estimatedDuration": 15
+  },
+  {
+    "testName": "Authentication: Verify login functionality",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Authentication: Verify login functionality', async ({ page }) => {\n  const loginPage = new LoginPage(page);\n  await loginPage.login(testData.validUser.username, testData.validUser.password);\n  await expect(loginPage.successMessage).toBeVisible(); // Assuming a success message exists\n});",
+    "description": "Test for Search and Discovery",
+    "tags": [
+      "search",
+      "discovery",
+      "filtering"
+    ],
+    "priority": "medium",
+    "estimatedDuration": 10
+  },
+  {
+    "testName": "Responsive Design: Verify search functionality on different devices",
+    "testCode": "\nimport { test, expect } from '@playwright/test';\nimport { ZohoAppPage } from '../pages/zoho-app-page';\nimport { SelfHealingLocators } from '../core/self-healing-locators';\nimport { SmartWaits } from '../core/smart-waits';\nimport { VisualValidator } from '../core/visual-validator';\n\n\n\ntest.beforeEach(async ({ page }) => {\n  const zohoAppPage = new ZohoAppPage(page);\n  await zohoAppPage.navigateToApp();\n});\n\ntest.afterEach(async ({ page }) => {\n  // Cleanup test data\n  await page.evaluate(() => {\n    localStorage.clear();\n    sessionStorage.clear();\n  });\n});\n\n\ntest('Responsive Design: Verify search functionality on different devices', async ({ page }) => {\n  const homePage = new HomePage(page);\n  const candidateListPage = new CandidateListPage(page);\n  await homePage.navigateToCandidates();\n  await page.setViewportSize({width: 375, height: 667}); //iPhone 8 size\n  await candidateListPage.searchCandidate(testData.candidateData.name);\n  await expect(candidateListPage.candidateList).toContainText(testData.candidateData.name);\n  await page.setViewportSize({width: 1440, height: 900}); //Large desktop size\n  await candidateListPage.searchCandidate(testData.candidateData.name);\n  await expect(candidateListPage.candidateList).toContainText(testData.candidateData.name);\n});\n\n\n//Page Objects (Example -  needs to be completed for all pages and selectors)\nclass HomePage {\n  constructor(public page: any) {}\n  async navigateToCandidates() {",
+    "description": "Test for Search and Discovery",
+    "tags": [
+      "search",
+      "discovery",
+      "filtering"
+    ],
+    "priority": "medium",
+    "estimatedDuration": 10
+  }
+]
