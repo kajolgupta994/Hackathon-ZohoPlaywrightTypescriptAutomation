@@ -4,13 +4,15 @@
     "rootDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/src/tests",
     "forbidOnly": false,
     "fullyParallel": true,
-    "globalSetup": "C:\\Users\\Kajol\\Playwright-Automation-Projects\\ZohoPlaywrightTypescriptAutomation\\src\\core\\global-setup.ts",
-    "globalTeardown": "C:\\Users\\Kajol\\Playwright-Automation-Projects\\ZohoPlaywrightTypescriptAutomation\\src\\core\\global-teardown.ts",
+    "globalSetup": null,
+    "globalTeardown": null,
     "globalTimeout": 0,
     "grep": {},
     "grepInvert": null,
     "maxFailures": 0,
-    "metadata": {},
+    "metadata": {
+      "actualWorkers": 1
+    },
     "preserveOutput": "always",
     "reporter": [
       [
@@ -55,7 +57,9 @@
         "outputDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 1
+        },
         "id": "chromium",
         "name": "chromium",
         "testDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/src/tests",
@@ -69,7 +73,9 @@
         "outputDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 1
+        },
         "id": "firefox",
         "name": "firefox",
         "testDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/src/tests",
@@ -83,7 +89,9 @@
         "outputDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 1
+        },
         "id": "webkit",
         "name": "webkit",
         "testDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/src/tests",
@@ -97,7 +105,9 @@
         "outputDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 1
+        },
         "id": "Mobile Chrome",
         "name": "Mobile Chrome",
         "testDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/src/tests",
@@ -111,7 +121,9 @@
         "outputDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 1
+        },
         "id": "Mobile Safari",
         "name": "Mobile Safari",
         "testDir": "C:/Users/Kajol/Playwright-Automation-Projects/ZohoPlaywrightTypescriptAutomation/src/tests",
@@ -126,24 +138,255 @@
     "updateSnapshots": "missing",
     "updateSourceMethod": "patch",
     "version": "1.55.0",
-    "workers": 11,
-    "webServer": {
-      "command": "npm run dev",
-      "url": "http://localhost:3000",
-      "reuseExistingServer": true
-    }
+    "workers": 1,
+    "webServer": null
   },
-  "suites": [],
-  "errors": [
+  "suites": [
     {
-      "message": "Error: Process from config.webServer was not able to start. Exit code: 1",
-      "stack": "Error: Process from config.webServer was not able to start. Exit code: 1"
+      "title": "zoho-login-comprehensive.spec.ts",
+      "file": "zoho-login-comprehensive.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Zoho Application Login Comprehensive Tests",
+          "file": "zoho-login-comprehensive.spec.ts",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "1. Admin Login, Dashboard Navigation and Logout Flow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19802,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Loaded stored credentials for login testing\n"
+                        },
+                        {
+                          "text": "Manager Email: manager17587917936658031@zoho.com\n"
+                        },
+                        {
+                          "text": "Admin Email: admin17587918044407267@zoho.com\n"
+                        },
+                        {
+                          "text": "🔑 STEP 1: Admin Login, Dashboard Navigation and Logout Flow\n"
+                        },
+                        {
+                          "text": "Logging in as Admin...\n"
+                        },
+                        {
+                          "text": "✅ Admin login successful\n"
+                        },
+                        {
+                          "text": "Testing admin dashboard navigation...\n"
+                        },
+                        {
+                          "text": "✅ Navigated to Dashboard page\n"
+                        },
+                        {
+                          "text": "✅ Navigated to Employees page\n"
+                        },
+                        {
+                          "text": "✅ Navigated to Positions page\n"
+                        },
+                        {
+                          "text": "✅ Navigated to Matching page\n"
+                        },
+                        {
+                          "text": "✅ Admin dashboard navigation completed\n"
+                        },
+                        {
+                          "text": "Logging out as Admin...\n"
+                        },
+                        {
+                          "text": "⚠️ Logout element not found, manually navigating to login\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-25T09:19:30.948Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41ceb5a52b3e950fca55-cd09bc41cd5afea913aa",
+              "file": "zoho-login-comprehensive.spec.ts",
+              "line": 32,
+              "column": 7
+            },
+            {
+              "title": "2. Manager Login, Dashboard Navigation and Logout Flow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 21202,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🔑 STEP 2: Manager Login, Dashboard Navigation and Logout Flow\n"
+                        },
+                        {
+                          "text": "Logging in as Manager...\n"
+                        },
+                        {
+                          "text": "✅ Manager login successful\n"
+                        },
+                        {
+                          "text": "Testing manager dashboard navigation...\n"
+                        },
+                        {
+                          "text": "✅ Navigated to Dashboard page\n"
+                        },
+                        {
+                          "text": "✅ Navigated to Employees page\n"
+                        },
+                        {
+                          "text": "✅ Navigated to Positions page\n"
+                        },
+                        {
+                          "text": "✅ Navigated to Matching page\n"
+                        },
+                        {
+                          "text": "✅ Manager dashboard navigation completed\n"
+                        },
+                        {
+                          "text": "Logging out as Manager...\n"
+                        },
+                        {
+                          "text": "⚠️ Logout element not found, manually navigating to login\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-25T09:19:51.449Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41ceb5a52b3e950fca55-dab3aacabd3b76d92188",
+              "file": "zoho-login-comprehensive.spec.ts",
+              "line": 143,
+              "column": 7
+            },
+            {
+              "title": "3. Login Negative Test Cases",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 21952,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "❌ STEP 3: Login Negative Test Cases\n"
+                        },
+                        {
+                          "text": "Testing: Invalid Email with Valid Password\n"
+                        },
+                        {
+                          "text": "✅ Invalid email correctly prevented login\n"
+                        },
+                        {
+                          "text": "Testing: Valid Email with Invalid Password\n"
+                        },
+                        {
+                          "text": "✅ Invalid password correctly prevented login\n"
+                        },
+                        {
+                          "text": "Testing: Empty Email with Valid Password\n"
+                        },
+                        {
+                          "text": "✅ Empty email correctly prevented login\n"
+                        },
+                        {
+                          "text": "Testing: Valid Email with Empty Password\n"
+                        },
+                        {
+                          "text": "✅ Empty password correctly prevented login\n"
+                        },
+                        {
+                          "text": "Testing: Both Fields Empty\n"
+                        },
+                        {
+                          "text": "✅ Empty fields correctly prevented login\n"
+                        },
+                        {
+                          "text": "Testing: Invalid Email Format\n"
+                        },
+                        {
+                          "text": "✅ Invalid email format correctly prevented login\n"
+                        },
+                        {
+                          "text": "✅ Login negative test cases completed\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-25T09:20:12.668Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41ceb5a52b3e950fca55-41c02f0a83049d6918a0",
+              "file": "zoho-login-comprehensive.spec.ts",
+              "line": 254,
+              "column": 7
+            }
+          ]
+        }
+      ]
     }
   ],
+  "errors": [],
   "stats": {
-    "startTime": "2025-09-21T09:31:43.037Z",
-    "duration": 1560.734,
-    "expected": 0,
+    "startTime": "2025-09-25T09:19:29.046Z",
+    "duration": 66006.39899999999,
+    "expected": 3,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

@@ -44,14 +44,14 @@ AI_TEMPERATURE=0.7
 AI_MAX_TOKENS=1000
 
 # ===========================================
-# Zoho API Configuration - OPTIONAL
+# API Configuration - OPTIONAL
 # ===========================================
-# These are optional and only needed for full Zoho integration
-ZOHO_RECRUIT_API_KEY=your_zoho_recruit_api_key
-ZOHO_PEOPLE_API_KEY=your_zoho_people_api_key
-ZOHO_CLIENT_ID=your_zoho_client_id
-ZOHO_CLIENT_SECRET=your_zoho_client_secret
-ZOHO_REDIRECT_URI=http://localhost:3000/auth/callback
+# These are optional and only needed for API integration
+API_BASE_URL=your_api_base_url
+API_KEY=your_api_key
+API_CLIENT_ID=your_client_id
+API_CLIENT_SECRET=your_client_secret
+API_REDIRECT_URI=http://localhost:3000/auth/callback
 
 # ===========================================
 # Test Configuration

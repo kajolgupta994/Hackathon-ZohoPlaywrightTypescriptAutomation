@@ -1,0 +1,14 @@
+❌ STEP 3: Login Negative Test Cases
+Testing: Invalid Email with Valid Password
+✅ Invalid email correctly prevented login
+Testing: Valid Email with Invalid Password
+✅ Invalid password correctly prevented login
+Testing: Empty Email with Valid Password
+✅ Empty email correctly prevented login
+Testing: Valid Email with Empty Password
+✅ Empty password correctly prevented login
+Testing: Both Fields Empty
+✅ Empty fields correctly prevented login
+Testing: Invalid Email Format
+✅ Invalid email format correctly prevented login
+✅ Login negative test cases completed

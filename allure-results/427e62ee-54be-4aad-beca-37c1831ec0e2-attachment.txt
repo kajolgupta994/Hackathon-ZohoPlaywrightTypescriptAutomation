@@ -1,0 +1,11 @@
+🔑 STEP 2: Manager Login, Dashboard Navigation and Logout Flow
+Logging in as Manager...
+✅ Manager login successful
+Testing manager dashboard navigation...
+✅ Navigated to Dashboard page
+✅ Navigated to Employees page
+✅ Navigated to Positions page
+✅ Navigated to Matching page
+✅ Manager dashboard navigation completed
+Logging out as Manager...
+⚠️ Logout element not found, manually navigating to login

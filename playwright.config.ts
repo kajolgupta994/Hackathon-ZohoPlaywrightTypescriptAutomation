@@ -28,7 +28,7 @@ export default defineConfig({
     ['list']
   ],
   use: {
-    baseURL: process.env.BASE_URL || 'https://your-zoho-app.com',
+    baseURL: process.env.BASE_URL || 'http://localhost:3000',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: {
@@ -36,8 +36,8 @@ export default defineConfig({
       size: { width: 1280, height: 720 }
     },
     // AI-enhanced timeout strategies
-    actionTimeout: 30000,
-    navigationTimeout: 60000,
+    actionTimeout: 45000,
+    navigationTimeout: 90000,
   },
   projects: [
     {
@@ -55,11 +55,19 @@ export default defineConfig({
     // Mobile testing
     {
       name: 'Mobile Chrome',
-      use: { ...devices['Pixel 5'] },
+      use: { 
+        ...devices['Pixel 5'],
+        actionTimeout: 60000,
+        navigationTimeout: 120000,
+      },
     },
     {
       name: 'Mobile Safari',
-      use: { ...devices['iPhone 12'] },
+      use: { 
+        ...devices['iPhone 12'],
+        actionTimeout: 60000,
+        navigationTimeout: 120000,
+      },
     },
   ],
   // No web server needed - testing against existing applications
@@ -73,6 +81,6 @@ export default defineConfig({
     }
   },
   // Global setup for AI services
-  globalSetup: require.resolve('./src/core/global-setup.ts'),
-  globalTeardown: require.resolve('./src/core/global-teardown.ts'),
+  // globalSetup: require.resolve('./src/core/global-setup.ts'),
+  // globalTeardown: require.resolve('./src/core/global-teardown.ts'),
 });

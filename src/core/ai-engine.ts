@@ -2,6 +2,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 import { Logger } from './logger';
+import { PlaywrightMCPServer } from './mcp-server';
 
 // Load environment variables from config folder
 dotenv.config({ path: path.join(process.cwd(), 'config', '.env') });
@@ -14,6 +15,7 @@ export class AIEngine {
   private genAI: GoogleGenerativeAI;
   private model: any;
   private logger: Logger;
+  private mcpServer: PlaywrightMCPServer | null = null;
 
   constructor() {
     this.logger = new Logger('AIEngine');
@@ -175,6 +177,151 @@ export class AIEngine {
     } catch (error) {
       this.logger.error('Failed to generate smart wait:', error);
       throw error;
+    }
+  }
+
+  /**
+   * Initialize MCP Server for enhanced AI capabilities
+   */
+  async initializeMCPServer(baseURL: string = 'http://localhost:3000'): Promise<void> {
+    try {
+      this.mcpServer = new PlaywrightMCPServer(baseURL);
+      await this.mcpServer.initialize();
+      this.logger.info('MCP Server initialized successfully');
+    } catch (error) {
+      this.logger.error('Failed to initialize MCP Server:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Generate test cases with real-time browser context using MCP Server
+   */
+  async generateTestCasesWithBrowserContext(requirement: string, url: string): Promise<string[]> {
+    try {
+      if (!this.mcpServer) {
+        await this.initializeMCPServer();
+      }
+
+      // Navigate to the page and analyze it
+      await this.mcpServer!.navigateTo(url);
+      const pageAnalysis = await this.mcpServer!.explorePage();
+      const domAnalysis = await this.mcpServer!.analyzeDOM();
+      const screenshot = await this.mcpServer!.takeScreenshot(`analysis-${Date.now()}`);
+
+      // Create enhanced context with real browser data
+      const enhancedContext = `
+        Real Browser Context:
+        - URL: ${this.mcpServer!.getCurrentURL()}
+        - Page Title: ${await this.mcpServer!.getPageTitle()}
+        - Interactive Elements: ${JSON.stringify(pageAnalysis.testableElements, null, 2)}
+        - DOM Structure: ${JSON.stringify(domAnalysis, null, 2)}
+        - Screenshot: ${screenshot}
+        
+        Original Requirement: ${requirement}
+        
+        Generate comprehensive test cases based on the actual page structure and elements.
+        Focus on testing the real functionality visible in the browser.
+      `;
+
+      const testCases = await this.generateTestCases(enhancedContext, requirement);
+      this.logger.info(`Generated ${testCases.length} test cases with browser context`);
+      return testCases;
+    } catch (error) {
+      this.logger.error('Failed to generate test cases with browser context:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Analyze test failures with real browser context
+   */
+  async analyzeTestFailureWithBrowser(error: string, testCode: string, url: string): Promise<string> {
+    try {
+      if (!this.mcpServer) {
+        await this.initializeMCPServer();
+      }
+
+      // Navigate to the page and capture current state
+      await this.mcpServer!.navigateTo(url);
+      const currentState = await this.mcpServer!.analyzeDOM();
+      const screenshot = await this.mcpServer!.takeScreenshot(`failure-analysis-${Date.now()}`);
+      const consoleLogs = await this.mcpServer!.getConsoleLogs();
+
+      const enhancedPrompt = `
+        Analyze this test failure with real browser context:
+        
+        Error: ${error}
+        Test Code: ${testCode}
+        Current Page State: ${JSON.stringify(currentState, null, 2)}
+        Console Logs: ${JSON.stringify(consoleLogs, null, 2)}
+        Screenshot: ${screenshot}
+        
+        Provide:
+        1. Root cause analysis based on actual browser state
+        2. Specific fix recommendations
+        3. Updated test code that works with current page structure
+        4. Prevention strategies
+      `;
+
+      const result = await this.model.generateContent(enhancedPrompt);
+      const response = await result.response;
+      return response.text();
+    } catch (error) {
+      this.logger.error('Failed to analyze test failure with browser context:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Generate self-healing locators with real browser context
+   */
+  async generateSelfHealingLocatorWithBrowser(description: string, url: string): Promise<string> {
+    try {
+      if (!this.mcpServer) {
+        await this.initializeMCPServer();
+      }
+
+      // Navigate to the page and analyze it
+      await this.mcpServer!.navigateTo(url);
+      const domAnalysis = await this.mcpServer!.analyzeDOM();
+
+      const enhancedPrompt = `
+        Generate a self-healing locator for: "${description}"
+        
+        Current Page DOM Analysis:
+        - Buttons: ${JSON.stringify(domAnalysis.buttons, null, 2)}
+        - Inputs: ${JSON.stringify(domAnalysis.inputs, null, 2)}
+        - Links: ${JSON.stringify(domAnalysis.links, null, 2)}
+        - Forms: ${JSON.stringify(domAnalysis.forms, null, 2)}
+        
+        The locator should:
+        1. Use multiple fallback strategies based on actual page elements
+        2. Be resilient to UI changes
+        3. Include data-testid, role, text, and CSS selectors
+        4. Handle dynamic content
+        5. Work with the actual page structure
+        
+        Return a Playwright locator string with fallback logic.
+      `;
+
+      const result = await this.model.generateContent(enhancedPrompt);
+      const response = await result.response;
+      return response.text();
+    } catch (error) {
+      this.logger.error('Failed to generate self-healing locator with browser context:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Close MCP Server
+   */
+  async closeMCPServer(): Promise<void> {
+    if (this.mcpServer) {
+      await this.mcpServer.close();
+      this.mcpServer = null;
+      this.logger.info('MCP Server closed');
     }
   }
 

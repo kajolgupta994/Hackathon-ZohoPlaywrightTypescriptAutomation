@@ -32,7 +32,7 @@ class TestGeneratorCLI {
         
         switch (choice) {
           case '1':
-            await this.generateZohoTests();
+            await this.generateWebAppTests();
             break;
           case '2':
             await this.generateCustomTests();
@@ -60,7 +60,7 @@ class TestGeneratorCLI {
 
   private async showMenu(): Promise<string> {
     console.log('📋 Menu Options:');
-    console.log('1. Generate Zoho Application Tests');
+    console.log('1. Generate Web Application Tests');
     console.log('2. Generate Custom Tests');
     console.log('3. Generate Visual Tests');
     console.log('4. Show Test Statistics');
@@ -73,11 +73,11 @@ class TestGeneratorCLI {
     });
   }
 
-  private async generateZohoTests(): Promise<void> {
-    console.log('\n🚀 Generating Zoho Application Tests...\n');
+  private async generateWebAppTests(): Promise<void> {
+    console.log('\n🚀 Generating Web Application Tests...\n');
     
     try {
-      const tests = await this.testGenerator.generateZohoTests();
+      const tests = await this.testGenerator.generateWebAppTests();
       
       console.log(`✅ Generated ${tests.length} tests successfully!\n`);
       

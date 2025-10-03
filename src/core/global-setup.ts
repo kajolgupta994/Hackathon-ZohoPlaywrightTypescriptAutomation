@@ -90,52 +90,43 @@ async function initializeAIEngine(): Promise<void> {
 }
 
 /**
- * Setup test data and configurations
+ * Setup basic test data and configurations
  */
 async function setupTestData(): Promise<void> {
   const logger = new Logger('TestDataSetup');
   
   try {
-    // Create test data files
-    const testData = {
-      candidates: [
-        {
-          name: 'John Doe',
-          email: 'john.doe@example.com',
-          skills: ['JavaScript', 'React', 'Node.js'],
-          experience: '5 years',
-          department: 'Engineering'
+    // Create basic test data structure
+    const basicTestData = {
+      environment: {
+        baseURL: process.env.BASE_URL || 'http://localhost:3000',
+        apiURL: process.env.API_URL || 'http://localhost:3000/api',
+        timeout: process.env.TEST_TIMEOUT || '30000'
+      },
+      testUsers: {
+        manager: {
+          email: process.env.MANAGER_USER_EMAIL || 'manager@example.com',
+          password: process.env.MANAGER_USER_PASSWORD || 'ManagerPassword123!'
         },
-        {
-          name: 'Jane Smith',
-          email: 'jane.smith@example.com',
-          skills: ['Python', 'Django', 'PostgreSQL'],
-          experience: '3 years',
-          department: 'Engineering'
+        admin: {
+          email: process.env.ADMIN_USER_EMAIL || 'admin@example.com',
+          password: process.env.ADMIN_USER_PASSWORD || 'AdminPassword123!'
         }
-      ],
-      positions: [
-        {
-          title: 'Senior Software Engineer',
-          department: 'Engineering',
-          location: 'San Francisco, CA',
-          skills: ['JavaScript', 'React', 'Node.js'],
-          experience: '5+ years'
-        },
-        {
-          title: 'Marketing Manager',
-          department: 'Marketing',
-          location: 'New York, NY',
-          skills: ['Digital Marketing', 'Analytics', 'SEO'],
-          experience: '3+ years'
-        }
-      ]
+      }
     };
     
-    const testDataPath = path.join(process.cwd(), 'test-results', 'test-data.json');
-    fs.writeFileSync(testDataPath, JSON.stringify(testData, null, 2));
+    // Write basic test data to files
+    const testDataDir = path.join(process.cwd(), 'src', 'test-data');
+    if (!fs.existsSync(testDataDir)) {
+      fs.mkdirSync(testDataDir, { recursive: true });
+    }
     
-    logger.info('Test data setup completed');
+    fs.writeFileSync(
+      path.join(testDataDir, 'basic-test-data.json'),
+      JSON.stringify(basicTestData, null, 2)
+    );
+    
+    logger.info('Basic test data setup completed');
   } catch (error) {
     logger.error('Test data setup failed', { error: getErrorMessage(error) });
     throw error;

@@ -76,67 +76,67 @@ export class TestGenerator {
   }
 
   /**
-   * Generate tests for Zoho application features
+   * Generate tests for common web application features
    */
-  async generateZohoTests(): Promise<GeneratedTest[]> {
-    const zohoFeatures: TestGenerationRequest[] = [
+  async generateWebAppTests(): Promise<GeneratedTest[]> {
+    const webAppFeatures: TestGenerationRequest[] = [
       {
-        feature: 'Candidate Profile Aggregation',
-        userStory: 'As a manager, I want to view unified candidate profiles from Zoho Recruit and Zoho People Plus so that I can make informed hiring decisions.',
+        feature: 'User Authentication',
+        userStory: 'As a user, I want to login to access my account so that I can use the application features.',
         acceptanceCriteria: [
-          'Profile data is aggregated from both systems',
-          'Data is up-to-date and synchronized',
-          'Conflicting information is highlighted',
-          'Profile view is user-friendly and comprehensive'
+          'Login form validates credentials correctly',
+          'Successful login redirects to dashboard',
+          'Invalid credentials show appropriate error messages',
+          'Session management works correctly'
         ],
         testType: 'e2e',
         priority: 'high',
-        tags: ['candidate', 'profile', 'aggregation']
+        tags: ['authentication', 'login', 'security']
       },
       {
-        feature: 'Position Management',
-        userStory: 'As a manager, I want to create and publish open positions so that I can attract suitable candidates.',
+        feature: 'Dashboard Management',
+        userStory: 'As a user, I want to view my dashboard so that I can see my data and navigate the application.',
         acceptanceCriteria: [
-          'Position creation form is intuitive',
-          'All required fields are validated',
-          'Position is published successfully',
-          'Position appears in search results'
+          'Dashboard loads with user data',
+          'Navigation elements are functional',
+          'Data is displayed correctly',
+          'User can access all features'
         ],
         testType: 'e2e',
         priority: 'high',
-        tags: ['position', 'management', 'creation']
+        tags: ['dashboard', 'navigation', 'data-display']
       },
       {
-        feature: 'Intelligent Matching',
-        userStory: 'As a manager, I want the system to suggest suitable candidates for open positions based on skills and experience.',
+        feature: 'Form Validation',
+        userStory: 'As a user, I want forms to validate my input so that I can submit accurate data.',
         acceptanceCriteria: [
-          'Matching algorithm considers skills, experience, and preferences',
-          'Match scores are calculated accurately',
-          'Results are ranked by relevance',
-          'Filtering and sorting options are available'
+          'Required fields are validated',
+          'Input format validation works',
+          'Error messages are clear and helpful',
+          'Form submission works correctly'
         ],
         testType: 'e2e',
         priority: 'high',
-        tags: ['matching', 'intelligence', 'recommendation']
+        tags: ['forms', 'validation', 'user-input']
       },
       {
-        feature: 'Search and Discovery',
-        userStory: 'As a manager, I want to search and filter candidates quickly so that I can find the right person for the job.',
+        feature: 'Search and Filtering',
+        userStory: 'As a user, I want to search and filter data so that I can find what I need quickly.',
         acceptanceCriteria: [
-          'Search functionality works across all candidate data',
+          'Search functionality works across all data',
           'Filters are intuitive and comprehensive',
           'Search results are fast and accurate',
           'Advanced search options are available'
         ],
         testType: 'e2e',
         priority: 'medium',
-        tags: ['search', 'discovery', 'filtering']
+        tags: ['search', 'filtering', 'data-retrieval']
       }
     ];
 
     const allGeneratedTests: GeneratedTest[] = [];
 
-    for (const feature of zohoFeatures) {
+    for (const feature of webAppFeatures) {
       try {
         const tests = await this.generateFromUserStory(feature);
         allGeneratedTests.push(...tests);
@@ -224,7 +224,7 @@ export class TestGenerator {
   private formatTestCode(testCode: string, request: TestGenerationRequest): string {
     const imports = `
 import { test, expect } from '@playwright/test';
-import { ZohoAppPage } from '../pages/zoho-app-page';
+import { PageObjectBase } from '../pages/page-object-base';
 import { SelfHealingLocators } from '../core/self-healing-locators';
 import { SmartWaits } from '../core/smart-waits';
 import { VisualValidator } from '../core/visual-validator';
@@ -232,8 +232,8 @@ import { VisualValidator } from '../core/visual-validator';
 
     const testSetup = `
 test.beforeEach(async ({ page }) => {
-  const zohoAppPage = new ZohoAppPage(page);
-  await zohoAppPage.navigateToApp();
+  const pageObjectBase = new PageObjectBase(page);
+  await pageObjectBase.navigateTo();
 });
 
 test.afterEach(async ({ page }) => {

@@ -1,2 +1,58 @@
-<testsuites id="" name="" tests="0" failures="0" skipped="0" errors="0" time="1.5607339999999998">
+<testsuites id="" name="" tests="3" failures="0" skipped="0" errors="0" time="66.00639899999999">
+<testsuite name="zoho-login-comprehensive.spec.ts" timestamp="2025-09-25T09:19:29.091Z" hostname="chromium" tests="3" failures="0" skipped="0" time="62.956" errors="0">
+<testcase name="Zoho Application Login Comprehensive Tests › 1. Admin Login, Dashboard Navigation and Logout Flow" classname="zoho-login-comprehensive.spec.ts" time="19.802">
+<system-out>
+<![CDATA[✅ Loaded stored credentials for login testing
+Manager Email: manager17587917936658031@zoho.com
+Admin Email: admin17587918044407267@zoho.com
+🔑 STEP 1: Admin Login, Dashboard Navigation and Logout Flow
+Logging in as Admin...
+✅ Admin login successful
+Testing admin dashboard navigation...
+✅ Navigated to Dashboard page
+✅ Navigated to Employees page
+✅ Navigated to Positions page
+✅ Navigated to Matching page
+✅ Admin dashboard navigation completed
+Logging out as Admin...
+⚠️ Logout element not found, manually navigating to login
+]]>
+</system-out>
+</testcase>
+<testcase name="Zoho Application Login Comprehensive Tests › 2. Manager Login, Dashboard Navigation and Logout Flow" classname="zoho-login-comprehensive.spec.ts" time="21.202">
+<system-out>
+<![CDATA[🔑 STEP 2: Manager Login, Dashboard Navigation and Logout Flow
+Logging in as Manager...
+✅ Manager login successful
+Testing manager dashboard navigation...
+✅ Navigated to Dashboard page
+✅ Navigated to Employees page
+✅ Navigated to Positions page
+✅ Navigated to Matching page
+✅ Manager dashboard navigation completed
+Logging out as Manager...
+⚠️ Logout element not found, manually navigating to login
+]]>
+</system-out>
+</testcase>
+<testcase name="Zoho Application Login Comprehensive Tests › 3. Login Negative Test Cases" classname="zoho-login-comprehensive.spec.ts" time="21.952">
+<system-out>
+<![CDATA[❌ STEP 3: Login Negative Test Cases
+Testing: Invalid Email with Valid Password
+✅ Invalid email correctly prevented login
+Testing: Valid Email with Invalid Password
+✅ Invalid password correctly prevented login
+Testing: Empty Email with Valid Password
+✅ Empty email correctly prevented login
+Testing: Valid Email with Empty Password
+✅ Empty password correctly prevented login
+Testing: Both Fields Empty
+✅ Empty fields correctly prevented login
+Testing: Invalid Email Format
+✅ Invalid email format correctly prevented login
+✅ Login negative test cases completed
+]]>
+</system-out>
+</testcase>
+</testsuite>
 </testsuites>

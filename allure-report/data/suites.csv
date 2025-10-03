@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","21207","2. Manager Login, Dashboard Navigation and Logout Flow","chromium","Thu Sep 25 14:49:51 IST 2025","passed","Thu Sep 25 14:50:12 IST 2025","Zoho Application Login Comprehensive Tests","","",""
+"","21958","3. Login Negative Test Cases","chromium","Thu Sep 25 14:50:12 IST 2025","passed","Thu Sep 25 14:50:34 IST 2025","Zoho Application Login Comprehensive Tests","","",""
+"","20502","1. Admin Login, Dashboard Navigation and Logout Flow","chromium","Thu Sep 25 14:49:30 IST 2025","passed","Thu Sep 25 14:49:51 IST 2025","Zoho Application Login Comprehensive Tests","","",""

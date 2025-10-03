@@ -1,6 +1,6 @@
 # 🤖 AI-Driven Playwright Automation Framework
 
-A comprehensive, AI-powered automation testing framework built with Playwright and TypeScript, specifically designed for testing Zoho internal applications with intelligent features and self-healing capabilities.
+A comprehensive, AI-powered automation testing framework built with Playwright and TypeScript, featuring intelligent capabilities and self-healing mechanisms for any web application.
 
 ## ✨ Features
 
@@ -11,11 +11,11 @@ A comprehensive, AI-powered automation testing framework built with Playwright a
 - **Flaky Test Detection**: AI-powered analysis to identify and fix flaky tests
 - **Visual Regression Testing**: Pixel-perfect visual comparisons with AI enhancements
 
-### 🎯 Zoho Application Testing
-- **Candidate Profile Aggregation**: Test data integration from Zoho Recruit and People Plus
-- **Position Management**: Automated testing of position creation and publishing
-- **Intelligent Matching**: Test AI-powered candidate-position matching algorithms
-- **Search & Discovery**: Comprehensive search and filtering functionality testing
+### 🎯 Web Application Testing
+- **Page Object Model**: Structured page interactions with AI enhancements
+- **Form Testing**: Automated form validation and submission testing
+- **Navigation Testing**: Comprehensive navigation and routing testing
+- **Search & Discovery**: Advanced search and filtering functionality testing
 
 ### 📊 Advanced Reporting
 - **Allure Integration**: Rich, interactive test reports with detailed insights
@@ -29,14 +29,14 @@ A comprehensive, AI-powered automation testing framework built with Playwright a
 - Node.js 18+
 - npm or yarn
 - Google Gemini API key
-- Zoho API credentials (optional for full functionality)
+- API credentials (optional for enhanced functionality)
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd ZohoPlaywrightTypescriptAutomation
+   cd your-project-name
    ```
 
 2. **Install dependencies**
@@ -80,11 +80,11 @@ AI_TEMPERATURE=0.7
 # Application Configuration
 BASE_URL=http://localhost:3000
 
-# Zoho API Configuration (Optional)
-ZOHO_RECRUIT_API_KEY=your_zoho_recruit_api_key
-ZOHO_PEOPLE_API_KEY=your_zoho_people_api_key
-ZOHO_CLIENT_ID=your_zoho_client_id
-ZOHO_CLIENT_SECRET=your_zoho_client_secret
+# API Configuration (Optional)
+API_BASE_URL=your_api_base_url
+API_KEY=your_api_key
+API_CLIENT_ID=your_client_id
+API_CLIENT_SECRET=your_client_secret
 
 # Test Configuration
 TEST_TIMEOUT=30000
@@ -130,13 +130,13 @@ export default defineConfig({
 ## 🧪 Test Structure
 
 ### Page Objects
-- `ZohoAppPage`: Base page with AI-enhanced methods
-- `CandidatePage`: Candidate management functionality
-- `PositionPage`: Position management functionality
+- `PageObjectBase`: Base page with AI-enhanced methods
+- `LoginPage`: Authentication functionality
+- `DashboardPage`: Main application dashboard
 
 ### Test Files
-- `candidate-management.spec.ts`: Candidate aggregation and management tests
-- `position-management.spec.ts`: Position creation and publishing tests
+- `authentication.spec.ts`: Login and authentication tests
+- `dashboard.spec.ts`: Main application functionality tests
 - `generated/`: AI-generated test files
 
 ### Core Components
@@ -233,7 +233,7 @@ await smartWaits.waitForElement(page, locator, {
   timeout: 30000,
   useAI: true,
   customConditions: [
-    'url === "https://app.zoho.com/dashboard"',
+    'url === "https://your-app.com/dashboard"',
     'function() { return document.readyState === "complete"; }'
   ]
 });
@@ -246,9 +246,9 @@ Generate comprehensive test cases from user stories:
 ```typescript
 const testGenerator = new TestGenerator();
 const tests = await testGenerator.generateFromUserStory({
-  feature: 'Candidate Profile Aggregation',
-  userStory: 'As a manager, I want to view unified candidate profiles...',
-  acceptanceCriteria: ['Profile data is aggregated', 'Data is up-to-date'],
+  feature: 'User Authentication',
+  userStory: 'As a user, I want to login to access my account...',
+  acceptanceCriteria: ['Login is successful', 'User is redirected to dashboard'],
   testType: 'e2e',
   priority: 'high'
 });
@@ -261,8 +261,8 @@ AI-enhanced visual comparisons with intelligent analysis:
 ```typescript
 const visualResult = await visualValidator.compareVisual(
   page,
-  '[data-testid="candidate-list"]',
-  'candidate-list-visual',
+  '[data-testid="user-list"]',
+  'user-list-visual',
   {
     threshold: 0.1,
     ignoreRegions: [{ x: 0, y: 0, width: 100, height: 50 }]

@@ -1,0 +1,14 @@
+✅ Loaded stored credentials for login testing
+Manager Email: manager17587917936658031@zoho.com
+Admin Email: admin17587918044407267@zoho.com
+🔑 STEP 1: Admin Login, Dashboard Navigation and Logout Flow
+Logging in as Admin...
+✅ Admin login successful
+Testing admin dashboard navigation...
+✅ Navigated to Dashboard page
+✅ Navigated to Employees page
+✅ Navigated to Positions page
+✅ Navigated to Matching page
+✅ Admin dashboard navigation completed
+Logging out as Admin...
+⚠️ Logout element not found, manually navigating to login
